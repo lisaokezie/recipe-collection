@@ -18,11 +18,8 @@
                 <div class="form-group">
                     <label for="kategorie" name="kategorie">Kategorie</label>
                     <select class="form-control">
-                        <option>Backen</option>
-                        <option>Kochen</option>
-                        <option>Nudelgericht</option>
-                        <option>BBQ</option>
-                        <option>Brot und Brötchen</option>
+                        <option>Options</option>
+                        
                     </select>
                     <div class="invalid-feedback">Example invalid feedback text</div>
                 </div>
