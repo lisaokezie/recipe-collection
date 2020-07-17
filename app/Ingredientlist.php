@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ingredientlist extends Model
 {
+    protected $guarded = [];
+
     public function ingredient()
     {
         return $this->belongsTo('App\ingredient');

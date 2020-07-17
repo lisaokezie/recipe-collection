@@ -13,7 +13,7 @@ class Recipe extends Model
         return $this->hasOne('App\Category', 'foreign_key');
     }
 
-    public function ingredientlist()
+    public function ingredientlists()
     {
         return $this->hasMany('App\Ingredientlist');
     }
