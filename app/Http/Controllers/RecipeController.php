@@ -39,6 +39,13 @@ class RecipeController extends Controller
 
     }
 
+    public function update(Recipe $recipe)
+    {
+        $recipe->update($this->validatedData());
+        return redirect('/recipe/'.$recipe->id);
+    }
+
+
     private function validatedData(){
         return request()->validate([
             'title' => 'required',
