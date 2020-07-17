@@ -9,7 +9,7 @@
 
         </div>
 
-        <form action="/recipes" method="post">
+        <form action="/recipe" method="post">
 
             @include('template.form')
 

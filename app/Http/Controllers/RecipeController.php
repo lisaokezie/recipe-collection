@@ -8,6 +8,12 @@ use App\Recipe;
 
 class RecipeController extends Controller
 {
+    public function index()
+    {
+        $recipes = recipe::all();
+        return view('recipe.index', compact('recipes'));
+    }
+
     public function create()
     {
         return view('recipe.create');
@@ -18,9 +24,7 @@ class RecipeController extends Controller
         $recipe = Recipe::create($this->validatedData());
         // $recipe = \App\Recipe::create([]);
 
-        return redirect('/recipes/'.$recipe->id);
-
-        // dd();
+        return redirect('/recipe/'.$recipe->id);
 
     }
 
