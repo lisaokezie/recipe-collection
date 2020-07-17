@@ -15,10 +15,9 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id');            
-            // $table->foreign('category_id')->references('id')->on('categories');
+            // $table->foreignId('category_id');            
             $table->string('title');
-            $table->text('description');
+            $table->string('description');
             $table->text('instructions');
             $table->integer('servings');
             $table->integer('time');
