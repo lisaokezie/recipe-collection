@@ -3,7 +3,7 @@
                 <!-- title -->
                 <div class="form-group">
                     <label for="title">Rezepttitel</label>
-                    <input name="title" type="text" class="form-control" id="title">
+                    <input name="title" type="text" class="form-control" id="title" value="{{ old('title') ?? $recipe->title}}">
                     @error('title')
                         <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -11,7 +11,7 @@
                 <!-- description -->
                 <div class="form-group">
                     <label for="description">Beschreibung</label>
-                    <textarea name="description" class="form-control" rows="3" id="description"></textarea>
+                    <textarea name="description" class="form-control" rows="3" id="description">{{ old('description') ?? $recipe->description}}</textarea>
                     @error('description')
                         <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -34,7 +34,7 @@
                     <!-- servings -->
                     <div class="form-group col col-md">
                         <label for="servings">Portionen</label>
-                        <input name="servings" type="number" class="form-control" >
+                        <input name="servings" type="number" class="form-control" value="{{ old('servings') ?? $recipe->servings}}">
                         @error('servings')
                         <div class="text-danger">{{$message}}</div>
                     @enderror                    </div>
@@ -43,7 +43,7 @@
                     <div class="form-group col col-md">
                         <label for="time">Zeitaufwand</label>
                         <div class="input-group mb-3">
-                            <input name="time" type="number" class="form-control">
+                            <input name="time" type="number" class="form-control" value="{{ old('time') ?? $recipe->time}}">
                             <div class="input-group-append">
                                 <span class="input-group-text">min</span>
                             </div>
@@ -56,7 +56,7 @@
                     <div class="form-group col col-md">
                         <label for="rating">Bewertung</label>
                         <div class="input-group mb-3">
-                            <input name="rating" type="number" class="form-control">
+                            <input name="rating" type="number" class="form-control" value="{{ old('rating') ?? $recipe->rating}}">
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <ion-icon name="star-outline"></ion-icon>
@@ -102,7 +102,7 @@
                 <!-- instructions -->
                 <div class="form-group">
                     <label for="instructions">Zubereitung</label>
-                    <textarea name="instructions" class="form-control" rows="3"></textarea>
+                    <textarea name="instructions" class="form-control" rows="3">{{ old('instructions') ?? $recipe->instructions}}</textarea>
                 </div>
                 @error('instructions')
                         <div class="text-danger">{{$message}}</div>
@@ -110,6 +110,5 @@
 
 
 
-                <button type="submit" class="btn btn-outline-primary">Rezept erstellen</button>
 
                

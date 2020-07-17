@@ -75,7 +75,7 @@
             <button type="button" class="btn btn-secondary">
                 PDF
             </button>
-            <button type="button" class="btn btn-secondary">Edit</button>
+            <a href="/recipe/{{$recipe->id}}/edit" role="button" class="btn btn-secondary">Edit</a>
             <button type="button" class="btn btn-secondary">Delete</button>
         </div>
 

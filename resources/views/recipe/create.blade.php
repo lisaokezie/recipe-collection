@@ -12,6 +12,7 @@
         <form action="/recipe" method="post">
 
             @include('template.form')
+            <button type="submit" class="btn btn-outline-primary">Rezept erstellen</button>
 
         </form>
 

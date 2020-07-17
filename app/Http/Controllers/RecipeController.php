@@ -33,6 +33,12 @@ class RecipeController extends Controller
         return view('recipe.show', compact('recipe'));
     }
 
+    public function edit(Recipe $recipe)
+    {
+        return view('recipe.edit', compact('recipe'));
+
+    }
+
     private function validatedData(){
         return request()->validate([
             'title' => 'required',

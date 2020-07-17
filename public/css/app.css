@@ -14,8 +14,8 @@
 a,
 a:hover,
 a:checked {
-    color: black;
-    text-decoration: none;
+    color: black !important;
+    text-decoration: none !important;
 }
 
 h1,
