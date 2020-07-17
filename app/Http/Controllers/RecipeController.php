@@ -18,13 +18,13 @@ class RecipeController extends Controller
         $recipe = Recipe::create($this->validatedData());
         // $recipe = \App\Recipe::create([]);
 
-        // return redirect('/recipes/'.$recipe->id);
+        return redirect('/recipes/'.$recipe->id);
 
         // dd();
 
     }
 
-    public function show(App\Recipe $recipe)
+    public function show(Recipe $recipe)
     {
         return view('recipe.show', compact('recipe'));
     }
