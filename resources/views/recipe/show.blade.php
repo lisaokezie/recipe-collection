@@ -76,9 +76,15 @@
                 PDF
             </button>
             <a href="/recipe/{{$recipe->id}}/edit" role="button" class="btn btn-secondary">Edit</a>
-            <button type="button" class="btn btn-secondary">Delete</button>
+            
+            <form action="/recipe/{{$recipe->id}}" method="post">
+                @method('DELETE')
+                @csrf
+            <button class="btn btn-secondary">Delete</button>
+        </form>
         </div>
 
+       
 
         <div class="py-4">
             <a href="index.html">

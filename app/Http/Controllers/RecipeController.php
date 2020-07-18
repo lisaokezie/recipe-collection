@@ -45,6 +45,12 @@ class RecipeController extends Controller
         return redirect('/recipe/'.$recipe->id);
     }
 
+    public function destroy(Recipe $recipe)
+    {
+        $recipe->delete();
+        return redirect('/recipe');
+
+    }
 
     private function validatedData(){
         return request()->validate([
