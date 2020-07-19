@@ -8,8 +8,8 @@ class Category extends Model
 {
     protected $guarded = [];
 
-    public function Recipe()
+    public function recipe()
     {
-        return $this->belongsToMany('App\Recipe');
+        return $this->belongsTo('App\Recipe');
     }
 }

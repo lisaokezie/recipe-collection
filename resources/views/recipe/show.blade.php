@@ -24,7 +24,8 @@
             </span>
 
             <span class="chip mx-1 mx-md-0 mr-md-3">
-                <ion-icon name="file-tray-full-outline"></ion-icon>Kategorie
+                <ion-icon name="file-tray-full-outline"></ion-icon>
+                {{$recipe->category->name}}
             </span>
 
             <span class="chip mx-1 mx-md-0 mr-md-3">

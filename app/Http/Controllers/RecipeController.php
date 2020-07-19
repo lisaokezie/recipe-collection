@@ -28,14 +28,16 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::create($this->validatedData());
         // $recipe = \App\Recipe::create([]);
+        // $recipe->category()->attach(request('category_id'));
 
-        return redirect('/recipe/'.$recipe->id);
-
+        return redirect('/recipes/'.$recipe->id);
     }
 
     public function show(Recipe $recipe)
     {
-        return view('recipe.show', compact('recipe'));
+        return view('recipe.show', compact('recipe'), [
+            'categories' => Category::all()
+        ]);
     }
 
     public function edit(Recipe $recipe)
@@ -47,13 +49,13 @@ class RecipeController extends Controller
     public function update(Recipe $recipe)
     {
         $recipe->update($this->validatedData());
-        return redirect('/recipe/'.$recipe->id);
+        return redirect('/recipes/'.$recipe->id);
     }
 
     public function destroy(Recipe $recipe)
     {
         $recipe->delete();
-        return redirect('/recipe');
+        return redirect('/recipes');
 
     }
 
@@ -61,6 +63,7 @@ class RecipeController extends Controller
         return request()->validate([
             'title' => 'required',
             'description' => 'required',
+            'category_id' => 'required',
             'instructions' => 'required',
             'servings' => 'required',
             'time' => 'required',
