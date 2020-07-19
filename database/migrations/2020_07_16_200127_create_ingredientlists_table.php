@@ -14,11 +14,11 @@ class CreateIngredientlistsTable extends Migration
     public function up()
     {
         Schema::create('ingredientlists', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('recipe_id');            
             $table->foreignId('ingredient_id');            
             $table->double('amount');            
-            $table->foreignId('unit_id');            
+            // $table->foreignId('unit_id');
+            $table->unique(['ingeredient_id', 'recipe_id']);           
             $table->timestamps();
         });
     }

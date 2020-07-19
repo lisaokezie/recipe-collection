@@ -13,8 +13,9 @@ class Recipe extends Model
         return $this->hasOne('App\Category','id','category_id');
     }
 
-    public function ingredient()
+    public function ingredients()
     {
-        return $this->belongsToMany('App\Ingredient');
+        return $this->belongsToMany('App\Ingredient', 'ingredientlists','recipe_id','ingredient_id')
+        ->withPivot(['amount']);
     }
 }

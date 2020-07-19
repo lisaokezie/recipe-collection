@@ -16,7 +16,7 @@
 
             <span class="chip mx-1 mx-md-0 mr-md-3">
                 <ion-icon name="restaurant-outline"></ion-icon>
-                {{$recipe->servings}} Portionen
+                {{$recipe->servings}} Portion(en)
             </span>
 
             <span class="chip mx-1 mx-md-0 mr-md-3">
@@ -40,7 +40,10 @@
 
         <h3>Zutaten</h3>
 
-        <table class="table table-sm table-striped mb-4">
+        @foreach($recipe->ingredients as $ingredient)
+            <p>{{$ingredient->name}} {{$ingredient->pivot->amount}}</p>
+        @endforeach
+        <!-- <table class="table table-sm table-striped mb-4">
             <thead>
                 <tr>
                     <th scope="col">Menge</th>
@@ -65,7 +68,7 @@
                     <td>Butter</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
 
         <h3>Zubereitung</h3>
         <p class="mb-4">{{$recipe->instructions}}</p>
@@ -76,9 +79,9 @@
             <button type="button" class="btn btn-secondary">
                 PDF
             </button>
-            <a href="/recipe/{{$recipe->id}}/edit" role="button" class="btn btn-secondary">Edit</a>
+            <a href="/recipes/{{$recipe->id}}/edit" role="button" class="btn btn-secondary">Edit</a>
             
-            <form action="/recipe/{{$recipe->id}}" method="post">
+            <form action="/recipes/{{$recipe->id}}" method="post">
                 @method('DELETE')
                 @csrf
             <button class="btn btn-secondary">Delete</button>

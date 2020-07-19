@@ -21,7 +21,6 @@
         </a>
         @empty
             <p>Keine Rezepte vorhanden</p>
-
         @endforelse
     </div>
 
