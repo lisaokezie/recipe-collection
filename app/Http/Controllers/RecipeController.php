@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Recipe;
 use App\Category;
+use App\Ingredient;
 
 
 class RecipeController extends Controller
@@ -24,12 +25,19 @@ class RecipeController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        // Neues Rezept wird erstellt
         $recipe = Recipe::create($this->validatedData());
-        // $recipe = \App\Recipe::create([]);
-        // $recipe->category()->attach(request('category_id'));
 
+        // Zutaten werden erstellt
+        $ingredient = Ingredient::create(['name'=>$request->input('ingredient')]);
+ 
+        // Erstellte Zutaten werden der Pivot Tabelle eingefügt
+        // Mengenangabe wird eingefügt
+        $recipe->ingredients()->attach($ingredient, ['amount'=>$request->input('amount')]);
+        
+        // Nutzer wird auf die Detailansicht des eben erstellten Rezepts weiter geleitet
         return redirect('/recipes/'.$recipe->id);
     }
 

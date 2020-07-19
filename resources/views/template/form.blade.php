@@ -27,7 +27,6 @@
                     @endforeach
                     </select>
 
-
                     @error('category')
                         <div class="text-danger">{{$message}}</div>
                     @enderror                </div>
@@ -74,7 +73,7 @@
                 <!--  ingredient -->
                 <div class="form-row">
                     <div class="form-group col col-md-6">
-                        <label for="ingredient" >Zutat</label>
+                        <label for="ingredient.name" >Zutat</label>
                         <input name="ingredient" type="text" class="form-control">
                         @error('ingredient')
                         <div class="text-danger">{{$message}}</div>
