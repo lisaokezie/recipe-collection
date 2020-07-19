@@ -9,7 +9,7 @@
         </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
         @forelse($recipes as $recipe)
-        <a href="/recipe/{{$recipe->id}}">
+        <a href="/recipes/{{$recipe->id}}">
         <div class="col mb-4">
             <div class="card h-100">
                 <div class="card-body">

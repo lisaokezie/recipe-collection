@@ -34,7 +34,7 @@
                     <a class="nav-link" href="/">Start<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/recipe">Rezepte</a>
+                    <a class="nav-link" href="/recipes">Rezepte</a>
                 </li>
                
             </ul>

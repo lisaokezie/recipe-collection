@@ -8,8 +8,8 @@ class Ingredient extends Model
 {
     protected $guarded = [];
 
-    public function ingredient()
+    public function recipe()
     {
-        return $this->hasMany('App\Ingredient');
+        return $this->belongsToMany('App\Recipe');
     }
 }

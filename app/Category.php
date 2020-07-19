@@ -10,6 +10,6 @@ class Category extends Model
 
     public function Recipe()
     {
-        return $this->belongsTo('App\Recipe');
+        return $this->belongsToMany('App\Recipe');
     }
 }

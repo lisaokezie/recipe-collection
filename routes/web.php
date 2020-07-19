@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/recipe', 'RecipeController@index');
-Route::get('/recipe/create', 'RecipeController@create');
-Route::post('/recipe', 'RecipeController@store');
-Route::get('/recipe/{recipe}', 'RecipeController@show');
-Route::get('/recipe/{recipe}/edit', 'RecipeController@edit');
-Route::patch('/recipe/{recipe}', 'RecipeController@update');
-Route::delete('/recipe/{recipe}', 'RecipeController@destroy');
+Route::get('/recipes', 'RecipeController@index');
+Route::get('/recipes/create', 'RecipeController@create');
+Route::post('/recipes', 'RecipeController@store');
+Route::get('/recipes/{recipe}', 'RecipeController@show');
+Route::get('/recipes/{recipe}/edit', 'RecipeController@edit');
+Route::patch('/recipes/{recipe}', 'RecipeController@update');
+Route::delete('/recipes/{recipe}', 'RecipeController@destroy');

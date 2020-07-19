@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Recipe;
+use App\Category;
+
 
 class RecipeController extends Controller
 {
@@ -16,7 +18,10 @@ class RecipeController extends Controller
 
     public function create()
     {
-        return view('recipe.create');
+        $recipe = new Recipe();
+        return view('recipe.create', [
+            'categories' => Category::all()
+        ]);
     }
 
     public function store()

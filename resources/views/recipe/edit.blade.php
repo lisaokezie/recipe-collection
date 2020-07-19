@@ -6,7 +6,7 @@
             <h2 class="display-4">Rezept bearbeiten</h2>
         </div>
 
-        <form action="/recipe/{{$recipe->id}}" method="post">
+        <form action="/recipes/{{$recipe->id}}" method="post">
         @method('PATCH')
 
             @include('template.form')
