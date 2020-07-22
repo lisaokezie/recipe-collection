@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Recipe extends Model
 {
     protected $guarded = [];
@@ -16,6 +17,6 @@ class Recipe extends Model
     public function ingredients()
     {
         return $this->belongsToMany('App\Ingredient', 'ingredientlists','recipe_id','ingredient_id')
-        ->withPivot(['amount']);
+        ->withPivot(['unit_id','amount']);
     }
 }

@@ -18,16 +18,6 @@ class CreateIngredientsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
-
-        // Schema::create('ingredient_recipe', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->foreignId('recipe_id')->onDelete('cascade');            
-        //     $table->foreignId('ingredient_id')->onDelete('cascade');            
-        //     $table->double('amount');            
-        //     // $table->foreignId('unit_id')->onDelete('cascade'); 
-        //     $table->unique(['ingeredient_id', 'recipe_id']);           
-        //     $table->timestamps();
-        // });
     }
 
     /**

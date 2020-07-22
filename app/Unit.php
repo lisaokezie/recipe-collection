@@ -8,8 +8,8 @@ class Unit extends Model
 {
     protected $guarded = [];
 
-    public function ingredientlist()
+    public function recipe()
     {
-        return $this->hasMany('App\Ingredientlist');
+        return $this->belongsTo('App\Recipe', 'unit_id');
     }
 }

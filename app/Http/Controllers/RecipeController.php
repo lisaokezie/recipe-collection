@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Recipe;
 use App\Category;
 use App\Ingredient;
+use App\Unit;
+
 
 
 class RecipeController extends Controller
@@ -33,17 +35,23 @@ class RecipeController extends Controller
         //Zutatenliste aus Nutzereingabe erstellen
         foreach ($request->ingredients as $ingredient) {
             //Daten aus Request zuweisen
-            $name = $ingredient['name'];
+            $ingredientName = $ingredient['name'];
             $amount = $ingredient['amount'];
+            $unitName = $ingredient['unit'];
 
             //Wenn eine Zutat mit diesem namen bereits existiert wird diese gefunden und verwendet,
             //ansonsten wird eine neue Zutat erstellt -> keine mehrfachen Datenbankeinträge
             $ingredient = Ingredient::firstOrCreate([
-                'name' => $name
+                'name' => $ingredientName
             ]);
 
+            $unit = Unit::firstOrCreate([
+                'name' => $unitName
+            ]);
+
+
             //Pivot Tabelle 'Ingredientlists' wird mit Zutat und Menge befüllt
-            $recipe->ingredients()->attach($ingredient, ['amount'=>$amount]);
+            $recipe->ingredients()->attach($ingredient, ['amount'=>$amount, 'unit_id'=>$unit->id]);
         }
 
 
@@ -54,7 +62,7 @@ class RecipeController extends Controller
     public function show(Recipe $recipe)
     {
         return view('recipe.show', compact('recipe'), [
-            'categories' => Category::all()
+            'categories' => Category::all(), 'units' => Unit::all()
         ]);
     }
 

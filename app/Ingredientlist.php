@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Unit;
 
 class Ingredientlist extends Model
 {
@@ -15,7 +16,7 @@ class Ingredientlist extends Model
 
     public function unit()
     {
-        return $this->belongsTo('App\Unit');
+        return $this->belongsTo('App\Unit', 'id', 'unit_id');
     }
 
     public function recipe()

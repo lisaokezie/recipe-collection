@@ -41,8 +41,9 @@
         <h3>Zutaten</h3>
 
         @foreach($recipe->ingredients as $ingredient)
-            <p>{{$ingredient->name}} {{$ingredient->pivot->amount}}</p>
+            <p>{{$ingredient->name}} {{$ingredient->pivot->amount}} {{$units->find($ingredient->pivot->unit_id)->name}}</p>
         @endforeach
+        
         <!-- <table class="table table-sm table-striped mb-4">
             <thead>
                 <tr>
