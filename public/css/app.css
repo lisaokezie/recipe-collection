@@ -11,9 +11,9 @@
 
 }
 
-a,
-a:hover,
-a:checked {
+card a,
+card a:hover,
+card a:checked {
     color: black !important;
     text-decoration: none !important;
 }

@@ -70,25 +70,46 @@
                     @enderror                    </div>
                 </div>
 
-                <!--  ingredient -->
-                <div class="form-row">
+                 <!-- ingredients -->
+
+                 <fieldset>
+                 <legend>Zutaten</fieldset>
+
+                 <table class="table table-bordered" id="dynamicTable">  
+            <tr>
+                <th>Zutat</th>
+                <th>Menge</th>
+                <th>Einheit</th>
+                <th>Hinzufügen/Entfernen</th>
+            </tr>
+            <tr>  
+                <td><input type="text" name="ingredients[0][name]" placeholder="Zutat" class="form-control" /></td>  
+                <td><input type="text" name="ingredients[0][amount]" placeholder="Menge" class="form-control" /></td>  
+                <td><input type="text" name="ingredients[0][unit]" placeholder="Einheit" class="form-control" /></td>  
+                <td><button type="button" name="add" id="add" class="btn btn-success">Mehr Hinzufügen</button></td>  
+            </tr>  
+        </table> 
+
+    </fieldset>
+
+                <!-- <div class="form-row">
                     <div class="form-group col col-md-6">
                         <label for="ingredient.name" >Zutat</label>
                         <input name="ingredient" type="text" class="form-control">
                         @error('ingredient')
                         <div class="text-danger">{{$message}}</div>
                     @enderror
-                    </div>
+                    </div> -->
                     <!-- amount -->
-                    <div class="form-group col col-md-2">
+                    <!-- <div class="form-group col col-md-2">
                         <label for="amount">Menge</label>
                         <input name="amount"type="text" class="form-control">
                         @error('amount')
                         <div class="text-danger">{{$message}}</div>
                     @enderror
-                    </div>
+                    </div> -->
                     <!-- unit -->
-                    <div class="form-group col col-md-4">
+                    <!-- <div class="form-group col col-md-4">
                         <label for="unit">Einheit</label>
                         <select name="unit" class="form-control">
                             <option selected>g</option>
@@ -99,7 +120,7 @@
                     @enderror
                     </div>
 
-                </div>
+                </div> -->
 
                 <!-- instructions -->
                 <div class="form-group">
@@ -110,7 +131,22 @@
                         <div class="text-danger">{{$message}}</div>
                     @enderror
 
-
-
+        <script type="text/javascript">
+   
+    var i = 0;
+       
+    $("#add").click(function(){
+   
+        ++i;
+   
+        $("#dynamicTable").append('<tr><td><input type="text" name="ingredients['+i+'][name]" placeholder="Zutat" class="form-control" /></td><td><input type="text" name="ingredients['+i+'][amount]" placeholder="Menge" class="form-control" /></td><td><input type="text" name="Mehr Hinzufügen['+i+'][einheit]" placeholder="Einheit" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Löschen</button></td></tr>');
+    });
+   
+    $(document).on('click', '.remove-tr', function(){  
+         $(this).parents('tr').remove();
+    });  
+   
+</script>
+                    
 
                

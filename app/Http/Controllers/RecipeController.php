@@ -27,16 +27,41 @@ class RecipeController extends Controller
 
     public function store(Request $request)
     {
+        // foreach ($request->ingredients as $ingredient) {
+        //     dd($ingredient);
+        // }
+
         // Neues Rezept wird erstellt
         $recipe = Recipe::create($this->validatedData());
 
         // Zutaten werden erstellt
-        $ingredient = Ingredient::create(['name'=>$request->input('ingredient')]);
+        // $ingredient = Ingredient::create(['name'=>$request->input('ingredient')]);
  
         // Erstellte Zutaten werden der Pivot Tabelle eingefügt
         // Mengenangabe wird eingefügt
-        $recipe->ingredients()->attach($ingredient, ['amount'=>$request->input('amount')]);
-        
+        // $recipe->ingredients()->attach($ingredient, ['amount'=>$request->input('amount')]);
+
+
+        // $data = request();
+        // $recipe->ingredients()->createMany($data['ingredients']);
+
+        foreach ($request->ingredients as $ingredient) {
+            //Daten aus Request zuweisen
+            $name = $ingredient['name'];
+            $amount = $ingredient['amount'];
+
+            //Wenn eine Zutat mit diesem namen bereits existiert wird diese gefunden und verwendet,
+            //ansonsten wird eine neue Zutat erstellt -> keine mehrfachen Datenbankeinträge
+            $ingredient = Ingredient::firstOrCreate([
+                'name' => $name
+            ]);
+
+            //Pivot Tabelle 'Ingredientlists' wird mit Zutat und Menge befüllt
+            $recipe->ingredients()->attach($ingredient, ['amount'=>$amount]);
+
+        }
+
+
         // Nutzer wird auf die Detailansicht des eben erstellten Rezepts weiter geleitet
         return redirect('/recipes/'.$recipe->id);
     }
@@ -78,6 +103,8 @@ class RecipeController extends Controller
             'servings' => 'required',
             'time' => 'required',
             'rating' => 'required'
+            // 'ingredients.*.ingredient' => 'required',
+            // 'amounts.*.amount' => 'required'
         ]);
     }
 }

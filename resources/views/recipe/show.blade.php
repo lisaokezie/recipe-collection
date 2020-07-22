@@ -90,11 +90,11 @@
 
        
 
-        <div class="py-4">
+        <!-- <div class="py-4">
             <a href="index.html">
                 <ion-icon name="chevron-back-outline"></ion-icon><span class="p-2"><strong>Zurück</strong></span>
             </a>
-        </div>
+        </div> -->
         <hr>
 
         <h3>Kommentare</h3>

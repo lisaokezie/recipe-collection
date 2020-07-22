@@ -5,7 +5,7 @@
 
 <div class="mx-auto px-3 py-3 pt-md-5 pb-md-4 text-center">
             <h2 class="display-4">Rezepte</h2>
-            <a href="/recipe/create" class="btn btn-outline-primary" role="button">Neues Rezept erstellen</a>
+            <a href="/recipes/create" class="btn btn-outline-primary" role="button">Neues Rezept erstellen</a>
         </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
         @forelse($recipes as $recipe)
