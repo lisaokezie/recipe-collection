@@ -27,24 +27,10 @@ class RecipeController extends Controller
 
     public function store(Request $request)
     {
-        // foreach ($request->ingredients as $ingredient) {
-        //     dd($ingredient);
-        // }
-
         // Neues Rezept wird erstellt
         $recipe = Recipe::create($this->validatedData());
 
-        // Zutaten werden erstellt
-        // $ingredient = Ingredient::create(['name'=>$request->input('ingredient')]);
- 
-        // Erstellte Zutaten werden der Pivot Tabelle eingefügt
-        // Mengenangabe wird eingefügt
-        // $recipe->ingredients()->attach($ingredient, ['amount'=>$request->input('amount')]);
-
-
-        // $data = request();
-        // $recipe->ingredients()->createMany($data['ingredients']);
-
+        //Zutatenliste aus Nutzereingabe erstellen
         foreach ($request->ingredients as $ingredient) {
             //Daten aus Request zuweisen
             $name = $ingredient['name'];
@@ -58,11 +44,10 @@ class RecipeController extends Controller
 
             //Pivot Tabelle 'Ingredientlists' wird mit Zutat und Menge befüllt
             $recipe->ingredients()->attach($ingredient, ['amount'=>$amount]);
-
         }
 
 
-        // Nutzer wird auf die Detailansicht des eben erstellten Rezepts weiter geleitet
+        // Nutzer wird auf die Detailansicht des erstellten Rezepts weiter geleitet
         return redirect('/recipes/'.$recipe->id);
     }
 

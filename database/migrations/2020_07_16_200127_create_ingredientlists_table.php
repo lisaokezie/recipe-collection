@@ -18,7 +18,7 @@ class CreateIngredientlistsTable extends Migration
             $table->foreignId('ingredient_id')->onDelete('cascade');            
             $table->double('amount');            
             // $table->foreignId('unit_id')->onDelete('cascade');
-            $table->unique(['ingeredient_id', 'recipe_id']);           
+            $table->unique(['ingredient_id', 'recipe_id']);           
             $table->timestamps();
         });
     }
