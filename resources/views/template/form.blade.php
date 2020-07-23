@@ -16,9 +16,7 @@
                         <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
-
                 <!-- Category -->
-
                 <div class="form-group">
                     <label for="category">Kategorie</label>
                     <select name="category.id" class="form-control">

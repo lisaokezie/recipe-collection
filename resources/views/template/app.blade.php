@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Title</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="{{url('/css/app.css')}}" text="text/css">
      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -23,7 +23,7 @@
     <!--Navigation-->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Rezeptsammlung</a>
+        <a class="navbar-brand" href="/">Rezeptsammlung</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,4 +45,18 @@
             </form>
         </div>
     </nav>
+
+    <main>
+    <div class="container">
+
+    <div class="mx-auto mb-2 px-3 py-3 pt-md-5 pb-md-4 text-center">
+            <h2 class="display-4">@yield('headline')</h2>
+        </div>
+
+    @yield('content')
+
+
+    </div>
+    </main>
+</div>
 </body>

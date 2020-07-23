@@ -1,13 +1,20 @@
-@include('template.header')
+@extends('template.app')
 
+@section('title', 'Rezept')
+
+@section('headline', 'Rezept')
+
+@section('content')
 <div class="container mw-55 pb-5">
+    <h3>{{$recipe->title}}</h3>
+
 
         <!--        Headline-->
-        <div class="mx-auto px-3 pb-0 pt-4
+        <!-- <div class="mx-auto px-3 pb-0 pt-4
                     pt-md-3 px-md-0 pt-md-5 pb-0 text-center text-md-left">
             <h2 class="display-4">{{$recipe->title}}</h2>
 
-        </div>
+        </div> -->
 
 
         <!--        Recipe-->
@@ -103,3 +110,4 @@
 
 
     </div>
+    @endsection

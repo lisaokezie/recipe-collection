@@ -87,6 +87,15 @@ class RecipeController extends Controller
 
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $recipe = Recipe::where('title','LIKE','%'.$search.'%')->orWhere('description','LIKE','%'.$search.'%')->get();
+        if(count($recipe) > 0)
+            return view('recipe.search')->withDetails($recipe)->withQuery ( $search );
+        else return view ('recipe.search')->withMessage('Es wurden keine rezepte gefunden');
+    }
+
     private function validatedData(){
         return request()->validate([
             'title' => 'required',
