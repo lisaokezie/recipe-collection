@@ -9,8 +9,6 @@ use App\Category;
 use App\Ingredient;
 use App\Unit;
 
-
-
 class RecipeController extends Controller
 {
     public function index()

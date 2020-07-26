@@ -33,7 +33,7 @@
                     <a class="nav-link" href="/recipes">Rezepte<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/recipes">Kategorien</a>
+                    <a class="nav-link" href="/categories">Kategorien</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/recipes/create">Neues Rezept erstellen</a>

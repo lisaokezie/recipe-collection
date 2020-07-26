@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 // Route::get('/', function () {
 //     return view('home');
 // });
+Route::redirect('/', '/recipes');
+
 Route::get('/recipes', 'RecipeController@index');
 Route::get('/recipes/create', 'RecipeController@create');
 Route::post('/recipes', 'RecipeController@store');
@@ -15,3 +17,6 @@ Route::get('/recipes/{recipe}/edit', 'RecipeController@edit');
 Route::patch('/recipes/{recipe}', 'RecipeController@update');
 Route::delete('/recipes/{recipe}', 'RecipeController@destroy');
 Route::any('/search','RecipeController@search');
+
+//Category
+Route::get('/categories', 'CategoryController@index');
