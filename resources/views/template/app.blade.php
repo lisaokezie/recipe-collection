@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@yield('title')</title>
+    <title>Rezeptsammlung | @yield('title')</title>
     <link rel="stylesheet" href="{{url('/css/app.css')}}" text="text/css">
      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -16,13 +16,12 @@
     <!--    Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 
-
 </head>
 
 <body>
     <!--Navigation-->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container-md">
         <a class="navbar-brand" href="/">Rezeptsammlung</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,16 +30,18 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Start<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/recipes">Rezepte<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/recipes">Rezepte</a>
+                    <a class="nav-link" href="/recipes">Kategorien</a>
                 </li>
-               
+                <li class="nav-item">
+                    <a class="nav-link" href="/recipes/create">Neues Rezept erstellen</a>
+                </li>
             </ul>
             <form action="/search" method="POST" role="search" class="form-inline my-2 my-lg-0">
                 @csrf
-            <input name="search" class="form-control mr-sm-2" type="search" placeholder="Rezepte suchen">
+            <input name="search" class="form-control mr-sm-2" type="search" placeholder="Rezept suchen">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suchen</button>
             </form>
         </div>

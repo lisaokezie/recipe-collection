@@ -83,7 +83,7 @@
 
         <!--        Actions-->
 
-        <div class="btn-group" role="group" aria-label="Basic example">
+        <!-- <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary">
                 PDF
             </button>
@@ -94,20 +94,28 @@
                 @csrf
             <button class="btn btn-secondary">Delete</button>
         </form>
-        </div>
-
-       
+        </div> -->
 
         <!-- <div class="py-4">
             <a href="index.html">
                 <ion-icon name="chevron-back-outline"></ion-icon><span class="p-2"><strong>Zurück</strong></span>
             </a>
         </div> -->
-        <hr>
+        <!-- <hr>
 
-        <h3>Kommentare</h3>
+        <h3>Kommentare</h3> -->
 
 
 
+
+    <div role="group">
+    <!-- <button type="button" class="btn btn-outline-primary">PDF erstellen</button> -->
+    <button type="button" class="btn btn-outline-primary mr-1">Bearbeiten</button>
+
+    <form action="/recipes/{{$recipe->id}}" method="post" style="display: inline;">
+                @method('DELETE')
+                @csrf
+                <button type="button" class="btn btn-outline-danger">Löschen</button>
+        </form>
     </div>
     @endsection

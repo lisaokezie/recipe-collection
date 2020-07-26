@@ -22,9 +22,7 @@ class RecipeController extends Controller
     public function create()
     {
         $recipe = new Recipe();
-        return view('recipe.create', [
-            'categories' => Category::all()
-        ]);
+        return view('recipe.create', ['categories' => Category::all()], compact('recipe'));
     }
 
     public function store(Request $request)
@@ -102,11 +100,12 @@ class RecipeController extends Controller
             'description' => 'required',
             'category_id' => 'required',
             'instructions' => 'required',
-            'servings' => 'required',
-            'time' => 'required',
-            'rating' => 'required'
+            'servings' => 'required|integer|min:1|max:100',
+            'time' => 'required|integer|min:1',
+            'rating' => 'required|integer|min:1|max:5'
             // 'ingredients.*.ingredient' => 'required',
-            // 'amounts.*.amount' => 'required'
+            // 'ingredients.*.amount' => 'required',
+            // 'ingredients.*.unit' => 'required'
         ]);
     }
 }
