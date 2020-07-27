@@ -9,11 +9,19 @@ use App\Category;
 use App\Ingredient;
 use App\Unit;
 
+use App\Filters\RecipeFilters;
+
+
 class RecipeController extends Controller
 {
-    public function index()
+    public function index(Request $request, RecipeFilters $filters)
     {
-        $recipes = recipe::all();
+
+        $recipes =  Recipe::filter($filters)->get();
+
+        // $recipes = Recipe::where('title', $request->query('title', 'Pfannkuchen'))->get();
+        // $recipes = Recipe::where('category_id', $request->query('category', '1'))->get();
+        // $recipes = recipe::all();
         return view('recipe.index', compact('recipes'));
     }
 

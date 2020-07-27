@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 // });
 Route::redirect('/', '/recipes');
 
-Route::get('/recipes', 'RecipeController@index');
+Route::get('/recipes', 'RecipeController@index')->name('recipes.index');
 Route::get('/recipes/create', 'RecipeController@create');
 Route::post('/recipes', 'RecipeController@store');
 Route::get('/recipes/{recipe}', 'RecipeController@show');

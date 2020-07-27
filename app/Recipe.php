@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Filters\Filterable;
 
 class Recipe extends Model
 {
+    use Filterable;
+
     protected $guarded = [];
 
     public function category()
