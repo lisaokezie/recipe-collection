@@ -42,7 +42,7 @@
             <form action="/search" method="POST" role="search" class="form-inline my-2 my-lg-0">
                 @csrf
             <input name="search" class="form-control mr-sm-2" type="search" placeholder="Rezept suchen">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suchen</button>
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Suchen</button>
             </form>
         </div>
     </nav>

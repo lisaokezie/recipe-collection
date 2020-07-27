@@ -92,6 +92,7 @@ class RecipeController extends Controller
         else return view ('recipe.search')->withMessage('Es wurden keine rezepte gefunden');
     }
 
+
     private function validatedData(){
         return request()->validate([
             'title' => 'required',

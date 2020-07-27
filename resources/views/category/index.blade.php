@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <ul>
+    <ul class="category-list">
         @forelse($categories as $category)
 
             <li>

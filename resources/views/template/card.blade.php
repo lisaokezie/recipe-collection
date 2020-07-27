@@ -1,4 +1,4 @@
-<a href="/recipes/{{$recipe->id}}">
+<a href="/recipes/{{$recipe->id}}" style="color: black; text-decoration: none">
         <div class="col mb-4">
             <div class="card h-100">
                 <div class="card-body">

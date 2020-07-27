@@ -11,12 +11,13 @@
 
 }
 
-card a,
-card a:hover,
-card a:checked {
-    color: black !important;
-    text-decoration: none !important;
+.category-list{
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
 }
+
 
 h1,
 h2,
