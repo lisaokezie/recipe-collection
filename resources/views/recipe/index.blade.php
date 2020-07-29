@@ -11,7 +11,7 @@
         @include('template.card')
 
         @empty
-            <p>Keine Rezepte vorhanden</p>
+            <div class="mx-auto text-center">Keine Rezepte vorhanden</div>
         @endforelse
     </div>
 @endsection

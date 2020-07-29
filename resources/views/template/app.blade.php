@@ -29,14 +29,14 @@
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
+                <li class="nav-item {{Request::path() === 'recipes' ? 'active':''}}">
                     <a class="nav-link" href="/recipes">Rezepte<span class="sr-only"></span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{Request::path() === 'categories' ? 'active':''}}">
                     <a class="nav-link" href="/categories">Kategorien</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/recipes/create">Neues Rezept erstellen</a>
+                    <a class="nav-link {{Request::path() === 'recipes/create' ? 'active':''}}" href="/recipes/create">Neues Rezept erstellen</a>
                 </li>
             </ul>
             <form action="/search" method="POST" role="search" class="form-inline my-2 my-lg-0">

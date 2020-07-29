@@ -13,7 +13,7 @@
                 <a href="{{ route('recipes.index', ['category' => $category->id])}}">{{$category->name}}</a>
             </li>
         @empty
-            <p>Keine Kategorien vorhanden</p>
+            <div class="mx-auto text-center">Keine Kategorien vorhanden</div>
         @endforelse
     </ul>
 @endsection
