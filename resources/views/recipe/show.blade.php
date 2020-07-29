@@ -42,6 +42,8 @@
 
         </div>
 
+        <p><strong>Verfasser: </strong>{{$recipe->user->name}}</p>
+
         <h3>Beschreibung</h3>
         <p class="mb-4">{{$recipe->description}}</p>
 

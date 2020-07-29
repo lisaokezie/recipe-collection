@@ -34,8 +34,10 @@ class RecipeController extends Controller
     public function store(Request $request)
     {
         // Neues Rezept wird erstellt
-        $recipe = Recipe::create($this->validatedData());
-
+        $recipe = new Recipe($this->validatedData());
+        $recipe->user_id = auth()->id();
+        $recipe->save();
+        // auth()->user()->recipes()->create($recipe);
         //Zutatenliste aus Nutzereingabe erstellen
         foreach ($request->ingredients as $ingredient) {
             //Daten aus Request zuweisen
