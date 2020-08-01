@@ -1,6 +1,6 @@
 @extends('template.app')
 
-@section('title', 'Rezept')
+@section('title', ' ' . e($recipe->title))
 
 @section('headline', 'Rezept')
 
@@ -83,10 +83,6 @@
         <h3>Zubereitung</h3>
         <p class="mb-4">{{$recipe->instructions}}</p>
 
-        <!-- <hr>
-
-    <h3>Kommentare</h3> -->
-
     <div role="group">
     <!-- <button type="button" class="btn btn-outline-primary">PDF erstellen</button> -->
 
@@ -98,4 +94,38 @@
             <button class="btn btn-outline-danger">Löschen</button>
         </form>
     </div>
+
+    <hr>
+
+    <h3>Kommentare</h3>
+
+    @auth
+    <form action="/recipes/{{$recipe->id}}/comments" method="post">
+        @csrf
+        <div class="form-group">
+            <label for="text">Kommentar schreiben</label>
+            <textarea name="text" class="form-control" rows="3" id="text"></textarea>
+                @error('text')
+                    <div class="text-danger">{{$message}}</div>
+                @enderror
+        </div>
+        <button class="btn btn-outline-primary">Senden</button>
+    </form>
+    @endauth
+    @guest
+        <p>Loggen Sie sich ein, um einen Kommentar zu schreiben</p>
+    @endguest
+
+    <div class="py-2">
+
+    @forelse($recipe->comments as $comment)
+    <hr>
+    <div><strong>User: {{$comment->user->name}}</strong></div>
+    <p>{{$comment->text}}</p>
+
+    @empty
+        <p>Keine Kommentare vorhanden</p>
+    @endforelse
+
     @endsection
+    </div>

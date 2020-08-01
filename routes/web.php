@@ -24,3 +24,7 @@ Route::get('/categories', 'CategoryController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Comments
+
+Route::post('recipes/{recipe}/comments', 'CommentController@store');

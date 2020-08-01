@@ -26,4 +26,9 @@ class Recipe extends Model
         return $this->belongsToMany('App\Ingredient', 'ingredientlists','recipe_id','ingredient_id')
         ->withPivot(['unit_id','amount']);
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
