@@ -14,4 +14,7 @@
             <div class="mx-auto text-center">Keine Rezepte vorhanden</div>
         @endforelse
     </div>
+
+    {{ $recipes->links() }}
+
 @endsection

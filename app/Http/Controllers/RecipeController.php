@@ -16,12 +16,7 @@ class RecipeController extends Controller
 {
     public function index(Request $request, RecipeFilters $filters)
     {
-
-        $recipes =  Recipe::filter($filters)->orderBy('created_at','DESC')->get();
-
-        // $recipes = Recipe::where('title', $request->query('title', 'Pfannkuchen'))->get();
-        // $recipes = Recipe::where('category_id', $request->query('category', '1'))->get();
-        // $recipes = recipe::all();
+        $recipes =  Recipe::filter($filters)->orderBy('created_at','DESC')->paginate(12);
         return view('recipe.index', compact('recipes'));
     }
 
@@ -96,7 +91,7 @@ class RecipeController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $recipe = Recipe::where('title','LIKE','%'.$search.'%')->orWhere('description','LIKE','%'.$search.'%')->get();
+        $recipe = Recipe::where('title','LIKE','%'.$search.'%')->orWhere('description','LIKE','%'.$search.'%')->paginate(12);
         if(count($recipe) > 0)
             return view('recipe.search')->withDetails($recipe)->withQuery ( $search );
         else return view ('recipe.search')->withMessage('Es wurden keine rezepte gefunden');
