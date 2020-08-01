@@ -17,7 +17,7 @@ class RecipeController extends Controller
     public function index(Request $request, RecipeFilters $filters)
     {
 
-        $recipes =  Recipe::filter($filters)->get();
+        $recipes =  Recipe::filter($filters)->orderBy('created_at','DESC')->get();
 
         // $recipes = Recipe::where('title', $request->query('title', 'Pfannkuchen'))->get();
         // $recipes = Recipe::where('category_id', $request->query('category', '1'))->get();

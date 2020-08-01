@@ -2,7 +2,7 @@
 
 @section('title', 'Startseite')
 
-@section('headline', 'Rezeptsammlung')
+@section('headline','Rezeptsammlung')
 
 @section('content')
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">

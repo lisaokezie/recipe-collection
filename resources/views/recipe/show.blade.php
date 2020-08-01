@@ -2,12 +2,10 @@
 
 @section('title', ' ' . e($recipe->title))
 
-@section('headline', 'Rezept')
+@section('headline', ' ' . e($recipe->title))
 
 @section('content')
 <div class="container mw-55 pb-5">
-    <h3>{{$recipe->title}}</h3>
-
 
         <!--        Headline-->
         <!-- <div class="mx-auto px-3 pb-0 pt-4
@@ -15,8 +13,6 @@
             <h2 class="display-4">{{$recipe->title}}</h2>
 
         </div> -->
-
-
         <!--        Recipe-->
 
         <div class="d-flex justify-content-center justify-content-md-start flex-wrap my-3">
@@ -53,48 +49,23 @@
             <p>{{$ingredient->pivot->amount}} {{$units->find($ingredient->pivot->unit_id)->name}} {{$ingredient->name}}</p>
         @endforeach
 
-        <!-- <table class="table table-sm table-striped mb-4">
-            <thead>
-                <tr>
-                    <th scope="col">Menge</th>
-                    <th scope="col">Einheit</th>
-                    <th scope="col">Zutat</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>450</td>
-                    <td>g</td>
-                    <td>Mehl</td>
-                </tr>
-                <tr>
-                    <td>300</td>
-                    <td>g</td>
-                    <td>Zucker</td>
-                </tr>
-                <tr>
-                    <td>300</td>
-                    <td>g</td>
-                    <td>Butter</td>
-                </tr>
-            </tbody>
-        </table> -->
-
         <h3>Zubereitung</h3>
         <p class="mb-4">{{$recipe->instructions}}</p>
 
+    @auth
+    @if(Auth::user()->id == $recipe->user_id)
     <div role="group">
     <!-- <button type="button" class="btn btn-outline-primary">PDF erstellen</button> -->
 
         <a href="/recipes/{{$recipe->id}}/edit" role="button" class="btn btn-outline-primary mr-1">Bearbeiten</a>
-
         <form action="/recipes/{{$recipe->id}}" method="post" style="display: inline;">
                 @method('DELETE')
                 @csrf
             <button class="btn btn-outline-danger">Löschen</button>
         </form>
     </div>
-
+    @endif
+    @endauth
     <hr>
 
     <h3>Kommentare</h3>
@@ -109,7 +80,7 @@
                     <div class="text-danger">{{$message}}</div>
                 @enderror
         </div>
-        <button class="btn btn-outline-primary">Senden</button>
+        <button class="btn btn-secondary">Senden</button>
     </form>
     @endauth
     @guest
@@ -118,9 +89,9 @@
 
     <div class="py-2">
 
-    @forelse($recipe->comments as $comment)
+    @forelse($recipe->comments->sortByDesc('created_at') as $comment)
     <hr>
-    <div><strong>User: {{$comment->user->name}}</strong></div>
+    <div><strong>{{$comment->user->name}}</strong></div>
     <p>{{$comment->text}}</p>
 
     @empty
