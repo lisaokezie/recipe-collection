@@ -32,29 +32,9 @@ class RecipeController extends Controller
         $recipe = new Recipe($this->validatedData());
         $recipe->user_id = auth()->id();
         $recipe->save();
-        // auth()->user()->recipes()->create($recipe);
+
         //Zutatenliste aus Nutzereingabe erstellen
-        foreach ($request->ingredients as $ingredient) {
-            //Daten aus Request zuweisen
-            $ingredientName = $ingredient['name'];
-            $amount = $ingredient['amount'];
-            $unitName = $ingredient['unit'];
-
-            //Wenn eine Zutat mit diesem namen bereits existiert wird diese gefunden und verwendet,
-            //ansonsten wird eine neue Zutat erstellt -> keine mehrfachen Datenbankeinträge
-            $ingredient = Ingredient::firstOrCreate([
-                'name' => $ingredientName
-            ]);
-
-            $unit = Unit::firstOrCreate([
-                'name' => $unitName
-            ]);
-
-
-            //Pivot Tabelle 'Ingredientlists' wird mit Zutat und Menge befüllt
-            $recipe->ingredients()->attach($ingredient, ['amount'=>$amount, 'unit_id'=>$unit->id]);
-        }
-
+        $this->saveIngredientlist($request, $recipe);
 
         // Nutzer wird auf die Detailansicht des erstellten Rezepts weiter geleitet
         return redirect('/recipes/'.$recipe->id);
@@ -70,14 +50,19 @@ class RecipeController extends Controller
     public function edit(Recipe $recipe)
     {
         return view('recipe.edit', compact('recipe'), [
-            'categories' => Category::all()
+            'categories' => Category::all(), 'units' => Unit::all()
         ]);
 
     }
 
-    public function update(Recipe $recipe)
+    public function update(Recipe $recipe, Request $request)
     {
         $recipe->update($this->validatedData());
+
+        $recipe->ingredients()->detach();
+
+        $this->saveIngredientlist($request, $recipe);
+
         return redirect('/recipes/'.$recipe->id);
     }
 
@@ -106,10 +91,40 @@ class RecipeController extends Controller
             'instructions' => 'required',
             'servings' => 'required|integer|min:1|max:100',
             'time' => 'required|integer|min:1',
-            'rating' => 'required|integer|min:1|max:5'
-            // 'ingredients.*.ingredient' => 'required',
-            // 'ingredients.*.amount' => 'required',
-            // 'ingredients.*.unit' => 'required'
+            'rating' => 'required|integer|min:1|max:5',
+            // 'ingredients.1.ingredient' => '',
+            // 'ingredients.1.amount' => '',
+            // 'ingredients.1.unit' => ''
         ]);
+    }
+
+    private function validatedIngredients(){
+        return request()->validate([
+            'ingredients.*.ingredient' => '',
+            'ingredients.*.amount' => '',
+            'ingredients.*.unit' => ''
+        ]);
+    }
+
+    private function saveIngredientlist(Request $request, Recipe $recipe){
+        foreach ($request->ingredients as $ingredient) {
+            //Daten aus Request zuweisen
+            $ingredientName = $ingredient['name'];
+            $amount = $ingredient['amount'];
+            $unitName = $ingredient['unit'];
+
+            //Wenn eine Zutat mit diesem namen bereits existiert wird diese gefunden und verwendet,
+            //ansonsten wird eine neue Zutat erstellt -> keine mehrfachen Datenbankeinträge
+            $ingredient = Ingredient::firstOrCreate([
+                'name' => $ingredientName
+            ]);
+
+            $unit = Unit::firstOrCreate([
+                'name' => $unitName
+            ]);
+
+            //Pivot Tabelle 'Ingredientlists' wird mit Zutat und Menge befüllt
+            $recipe->ingredients()->attach($ingredient, ['amount'=>$amount, 'unit_id'=>$unit->id]);
+        }
     }
 }

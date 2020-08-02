@@ -72,30 +72,73 @@
                         </div>
                     </div>
 
-                 <!-- ingredients -->
+            @if(Request::path() === 'recipes/create')
+                 <!-- ingredients erstellen -->
 
                  <fieldset>
                  <legend>Zutaten</fieldset>
 
                  <table class="table table-bordered" id="dynamicTable">  
-            <tr>
-                <th>Zutat</th>
-                <th>Menge</th>
-                <th>Einheit</th>
-                <th>Hinzufügen/Entfernen</th>
-            </tr>
-            <tr>  
+                <tr>
+                    <th>Zutat</th>
+                    <th>Menge</th>
+                    <th>Einheit</th>
+                    <th>Hinzufügen/Entfernen</th>
+                </tr>
+                <tr>  
+                    <td><input type="text" name="ingredients[0][name]" value="{{old('ingredients.0.name')}}" placeholder="Zutat" class="form-control" /></td>  
+                    <td><input type="text" name="ingredients[0][amount]" value="{{old('ingredients.0.amount')}}" placeholder="Menge" class="form-control" /></td>  
+                    <td><input type="text" name="ingredients[0][unit]" value="{{old('ingredients.0.unit')}}" placeholder="Einheit" class="form-control" /></td>  
+                    <td><button type="button" name="add" id="add" class="btn btn-success">Mehr Hinzufügen</button></td>  
+                </tr>  
+                </table> 
+                </fieldset>
 
-                <td><input type="text" name="ingredients[0][name]" value="{{old('ingredients.0.name')}}" placeholder="Zutat" class="form-control" /></td>  
-                <td><input type="text" name="ingredients[0][amount]" value="{{old('ingredients.0.amount')}}" placeholder="Menge" class="form-control" /></td>  
-                <td><input type="text" name="ingredients[0][unit]" value="{{old('ingredients.0.unit')}}" placeholder="Einheit" class="form-control" /></td>  
-                <td><button type="button" name="add" id="add" class="btn btn-success">Mehr Hinzufügen</button></td>  
+                <!-- Ingredientlist bearbeiten -->
+                @else
+                <fieldset>
+                 <legend>Zutaten</fieldset>
 
-            </tr>  
-        </table> 
+                 <table class="table table-bordered" id="dynamicTable">  
+                <tr>
+                    <th>Zutat</th>
+                    <th>Menge</th>
+                    <th>Einheit</th>
+                    <th>Hinzufügen/Entfernen</th>
+                </tr>
 
-    </fieldset>
 
+                @foreach($recipe->ingredients as $ingredient)
+                    @if ($loop->first)
+                    <tr>  
+                    
+                    <td><input type="text" name="ingredients[{{$loop->index}}][name]" value="{{$ingredient->name}}" placeholder="Zutat" class="form-control" /></td>  
+                    <td><input type="text" name="ingredients[{{$loop->index}}][amount]" value="{{$ingredient->pivot->amount}}" placeholder="Menge" class="form-control" /></td>  
+                    <td><input type="text" name="ingredients[{{$loop->index}}][unit]" value="{{$units->find($ingredient->pivot->unit_id)->name}}" placeholder="Einheit" class="form-control" /></td>  
+                    <td><button type="button" name="add" id="add" class="btn btn-success">Mehr Hinzufügen</button></td>  
+
+                    </tr>  
+                    
+                    @else
+                <tr>
+                    <td><input type="text" name="ingredients[{{$loop->index}}][name]" value="{{$ingredient->name}}" placeholder="Zutat" class="form-control" /></td>
+                <td><input type="text" name="ingredients[{{$loop->index}}][amount]" value="{{$ingredient->pivot->amount}}" placeholder="Menge" class="form-control" /></td>
+                <td><input type="text" name="ingredients[{{$loop->index}}][unit]" value="{{$units->find($ingredient->pivot->unit_id)->name}}" placeholder="Einheit" class="form-control" /></td>
+                <td><button type="button" class="btn btn-danger remove-tr">Löschen</button></td>
+                </tr>
+                @endif
+
+                <script>
+                     var i = {{$loop->count}};
+                </script>
+                @endforeach
+
+
+                </table> 
+
+                </fieldset>
+
+            @endif
                 <!-- instructions -->
                 <div class="form-group">
                     <label for="instructions">Zubereitung</label>
@@ -108,7 +151,9 @@
                 
 <script type="text/javascript">
    
+   @if(Request::path() === 'recipes/create')
     var i = 0;
+    @endif
        
     $("#add").click(function(){
    

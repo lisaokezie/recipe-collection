@@ -14,11 +14,6 @@ class Ingredientlist extends Model
         return $this->belongsTo('App\ingredient');
     }
 
-    public function unit()
-    {
-        return $this->belongsTo('App\Unit', 'id', 'unit_id');
-    }
-
     public function recipe()
     {
         return $this->belongsTo('App\Recipe');

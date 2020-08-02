@@ -12,4 +12,9 @@ class Ingredient extends Model
     {
         return $this->belongsToMany('App\Recipe', 'ingredientlists');
     }
+
+    public function unit()
+    {
+        return $this->belongsTo('App\Unit');
+    }
 }

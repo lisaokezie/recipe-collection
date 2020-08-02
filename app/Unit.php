@@ -12,4 +12,11 @@ class Unit extends Model
     {
         return $this->belongsTo('App\Recipe', 'unit_id');
     }
+
+    public function ingredientlists()
+    {
+        return $this->hasMany('App\Ingredientlist');
+    }
+
+   
 }
