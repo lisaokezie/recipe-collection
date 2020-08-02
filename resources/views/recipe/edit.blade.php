@@ -5,7 +5,7 @@
 @section('headline', 'Rezept bearbeiten')
 
 @section('content')
-        <form action="/recipes/{{$recipe->id}}" method="post">
+        <form action="/recipes/{{$recipe->id}}" method="post" enctype="multipart/form-data">
         @method('PATCH')
 
             @include('template.form')

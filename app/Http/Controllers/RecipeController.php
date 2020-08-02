@@ -33,6 +33,8 @@ class RecipeController extends Controller
         $recipe->user_id = auth()->id();
         $recipe->save();
 
+        $this->storeImage($recipe);
+
         //Zutatenliste aus Nutzereingabe erstellen
         $this->saveIngredientlist($request, $recipe);
 
@@ -59,6 +61,8 @@ class RecipeController extends Controller
     {
         $recipe->update($this->validatedData());
 
+        $this->storeImage($recipe);
+
         $recipe->ingredients()->detach();
 
         $this->saveIngredientlist($request, $recipe);
@@ -84,7 +88,8 @@ class RecipeController extends Controller
 
 
     private function validatedData(){
-        return request()->validate([
+
+        return tap(request()->validate([
             'title' => 'required',
             'description' => 'required',
             'category_id' => 'required',
@@ -92,10 +97,25 @@ class RecipeController extends Controller
             'servings' => 'required|integer|min:1|max:100',
             'time' => 'required|integer|min:1',
             'rating' => 'required|integer|min:1|max:5',
-            // 'ingredients.1.ingredient' => '',
-            // 'ingredients.1.amount' => '',
-            // 'ingredients.1.unit' => ''
-        ]);
+        ]), function(){
+            if(request()->hasFile('imgae')){
+                request()->validate([
+                    'image' => 'file|image|max:5000'
+                ]);
+            }
+        });
+
+
+        // return request()->validate([
+        //     'title' => 'required',
+        //     'description' => 'required',
+        //     'category_id' => 'required',
+        //     'instructions' => 'required',
+        //     'servings' => 'required|integer|min:1|max:100',
+        //     'time' => 'required|integer|min:1',
+        //     'rating' => 'required|integer|min:1|max:5',
+        // ]);
+
     }
 
     private function validatedIngredients(){
@@ -125,6 +145,14 @@ class RecipeController extends Controller
 
             //Pivot Tabelle 'Ingredientlists' wird mit Zutat und Menge befüllt
             $recipe->ingredients()->attach($ingredient, ['amount'=>$amount, 'unit_id'=>$unit->id]);
+        }
+    }
+
+    private function storeImage($recipe){
+        if(request()->has('image')){
+            $recipe->update([
+                'image' => request()->image->store('uploads','public')
+            ]);
         }
     }
 }

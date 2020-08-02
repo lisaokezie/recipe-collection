@@ -148,6 +148,14 @@
                     @enderror
 
                 </div>
+
+                <div class="form-group d-flex flex-column">
+                    <label for="image">Rezeptbild</label>
+                    <input type="file" name="image" class="py-2">
+                    @error('image')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>  
                 
 <script type="text/javascript">
    

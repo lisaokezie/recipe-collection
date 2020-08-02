@@ -38,6 +38,12 @@
 
         </div>
 
+        @if($recipe->image)
+            <div class="row col-12">
+                <img src="{{asset('storage/' . $recipe->image)}}" alt="" class="rounded" style="max-height: 300px; width: 500px; object-fit:cover;">
+            </div>
+        @endif
+
         <p><strong>Verfasser: </strong>{{$recipe->user->name}}</p>
 
         <h3>Beschreibung</h3>

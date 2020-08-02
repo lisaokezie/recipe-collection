@@ -22,7 +22,8 @@ class CreateRecipesTable extends Migration
             $table->integer('servings');
             $table->integer('time');
             $table->integer('rating');
-            $table->foreignId('user_id');            
+            $table->foreignId('user_id'); 
+            $table->string('image')->nullable();           
             $table->timestamps();
 
         });

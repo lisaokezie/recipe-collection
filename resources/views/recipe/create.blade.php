@@ -5,7 +5,7 @@
 @section('headline', 'Neues Rezept erstellen')
 
 @section('content')
-        <form action="/recipes" method="post">
+        <form action="/recipes" method="post" enctype="multipart/form-data">
 
         @include('template.form')
 
