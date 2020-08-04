@@ -5,64 +5,56 @@
 @section('headline', ' ' . e($recipe->title))
 
 @section('content')
-<div class="container mw-55 pb-5">
 
-        <!--        Headline-->
-        <!-- <div class="mx-auto px-3 pb-0 pt-4
-                    pt-md-3 px-md-0 pt-md-5 pb-0 text-center text-md-left">
-            <h2 class="display-4">{{$recipe->title}}</h2>
+<div class="recipe pb-5 mx-auto maxwidth">
 
-        </div> -->
-        <!--        Recipe-->
+        @if($recipe->image)
+        <div class="img-container mb-4">
+            <img src="{{asset('storage/' . $recipe->image)}}" alt="" class="img-fluid">
+        </div>
+        @endif
 
         <div class="d-flex justify-content-center justify-content-md-start flex-wrap my-3">
 
-            <span class="chip mx-1 mx-md-0 mr-md-3">
-                <ion-icon name="restaurant-outline"></ion-icon>
+            <span class="chip mx-1 mx-md-0 mr-md-2">
+            <i class="material-icons md-18">local_dining</i>
                 {{$recipe->servings}} Portion(en)
             </span>
 
-            <span class="chip mx-1 mx-md-0 mr-md-3">
-                <ion-icon name="time-outline"></ion-icon>{{$recipe->time}} min
+            <span class="chip mx-1 mx-md-0 mr-md-2">
+            <i class="material-icons md-18">schedule</i>{{$recipe->time}} min
             </span>
 
-            <span class="chip mx-1 mx-md-0 mr-md-3">
-                <ion-icon name="file-tray-full-outline"></ion-icon>
+            <span class="chip mx-1 mx-md-0 mr-md-2">
+            <i class="material-icons md-18">inbox</i>
                 {{$recipe->category->name}}
             </span>
 
-            <span class="chip mx-1 mx-md-0 mr-md-3">
-                <ion-icon name="star-outline"></ion-icon>
+            <span class="chip mx-1 mx-md-0 mr-md-2">
+                <i class="material-icons md-18">star_outline</i>
                 {{$recipe->rating}}
             </span>
 
         </div>
 
-        @if($recipe->image)
-            <div class="row col-12">
-                <img src="{{asset('storage/' . $recipe->image)}}" alt="" class="rounded" style="max-height: 300px; width: 500px; object-fit:cover;">
-            </div>
-        @endif
-
         <p><strong>Verfasser: </strong>{{$recipe->user->name}}</p>
 
-        <h3>Beschreibung</h3>
+        <h3 class="mt-4">Beschreibung</h3>
         <p class="mb-4">{{$recipe->description}}</p>
 
-        <h3>Zutaten</h3>
+        <h3 class="mt-5">Zutaten</h3>
 
         @foreach($recipe->ingredients as $ingredient)
             <p>{{$ingredient->pivot->amount}} {{$units->find($ingredient->pivot->unit_id)->name}} {{$ingredient->name}}</p>
         @endforeach
 
-        <h3>Zubereitung</h3>
+        <h3 class="mt-5">Zubereitung</h3>
         <p class="mb-4">{{$recipe->instructions}}</p>
 
     @auth
     @if(Auth::user()->id == $recipe->user_id)
-    <div role="group">
+    <div role="group" class="mt-4">
     <!-- <button type="button" class="btn btn-outline-primary">PDF erstellen</button> -->
-
         <a href="/recipes/{{$recipe->id}}/edit" role="button" class="btn btn-outline-primary mr-1">Bearbeiten</a>
         <form action="/recipes/{{$recipe->id}}" method="post" style="display: inline;">
                 @method('DELETE')
@@ -72,6 +64,8 @@
     </div>
     @endif
     @endauth
+
+    <section class="mt-5">
     <hr>
 
     <h3>Kommentare</h3>
@@ -97,12 +91,13 @@
 
     @forelse($recipe->comments->sortByDesc('created_at') as $comment)
     <hr>
-    <div><strong>{{$comment->user->name}}</strong></div>
+    <div class="user-info"><strong>{{$comment->user->name}}</strong></div>
     <p>{{$comment->text}}</p>
 
     @empty
         <p>Keine Kommentare vorhanden</p>
     @endforelse
 
+    </section>
+</div>
     @endsection
-    </div>

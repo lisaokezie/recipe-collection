@@ -88,8 +88,7 @@ class RecipeController extends Controller
 
 
     private function validatedData(){
-
-        return tap(request()->validate([
+        return request()->validate([
             'title' => 'required',
             'description' => 'required',
             'category_id' => 'required',
@@ -97,37 +96,27 @@ class RecipeController extends Controller
             'servings' => 'required|integer|min:1|max:100',
             'time' => 'required|integer|min:1',
             'rating' => 'required|integer|min:1|max:5',
-        ]), function(){
-            if(request()->hasFile('imgae')){
-                request()->validate([
-                    'image' => 'file|image|max:5000'
-                ]);
-            }
-        });
+            'image' => 'sometimes|file|image|max:5000'
 
-
-        // return request()->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        //     'category_id' => 'required',
-        //     'instructions' => 'required',
-        //     'servings' => 'required|integer|min:1|max:100',
-        //     'time' => 'required|integer|min:1',
-        //     'rating' => 'required|integer|min:1|max:5',
-        // ]);
-
+        ]);
     }
 
     private function validatedIngredients(){
         return request()->validate([
-            'ingredients.*.ingredient' => '',
-            'ingredients.*.amount' => '',
-            'ingredients.*.unit' => ''
+            'ingredients.*.name' => 'required',
+            'ingredients.*.amount' => 'required',
+            'ingredients.*.unit' => 'required'
         ]);
     }
 
     private function saveIngredientlist(Request $request, Recipe $recipe){
-        foreach ($request->ingredients as $ingredient) {
+
+        // dd($this->validatedIngredients());
+        $ingredients = $this->validatedIngredients()['ingredients'];
+        // dd($ingredients);
+        foreach ($ingredients as $ingredient) {
+
+
             //Daten aus Request zuweisen
             $ingredientName = $ingredient['name'];
             $amount = $ingredient['amount'];

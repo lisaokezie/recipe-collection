@@ -6,7 +6,9 @@
 
 @section('content')
 
-    <ul class="category-list">
+    <div class="row justify-content-center">
+        <div class="col-8">
+         <ul class="category-list">
         @forelse($categories as $category)
 
             <li>
@@ -15,5 +17,7 @@
         @empty
             <div class="mx-auto text-center">Keine Kategorien vorhanden</div>
         @endforelse
-    </ul>
+        </ul>
+        </div>
+    </div>
 @endsection

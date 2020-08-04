@@ -5,16 +5,14 @@
 @section('headline','Rezeptsammlung')
 
 @section('content')
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    <div class="card-columns">
         @forelse($recipes as $recipe)
 
         @include('template.card')
 
         @empty
-            <div class="mx-auto text-center">Keine Rezepte vorhanden</div>
+            <p class="text-center">Keine Rezepte vorhanden</p>
         @endforelse
     </div>
-
     {{ $recipes->links() }}
-
 @endsection

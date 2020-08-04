@@ -12,7 +12,7 @@
 
 @section('content')
     @if(isset($details))
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="card-columns">
         @foreach($details as $recipe)
 
             @include('template.card')
