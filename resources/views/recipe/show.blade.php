@@ -7,7 +7,6 @@
 @section('content')
 
 <div class="recipe pb-5 mx-auto maxwidth">
-
         @if($recipe->image)
         <div class="img-container mb-4">
             <img src="{{asset('storage/' . $recipe->image)}}" alt="" class="img-fluid">

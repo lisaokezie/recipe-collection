@@ -11,7 +11,6 @@ use App\Unit;
 
 use App\Filters\RecipeFilters;
 
-
 class RecipeController extends Controller
 {
     public function index(Request $request, RecipeFilters $filters)
@@ -28,16 +27,17 @@ class RecipeController extends Controller
 
     public function store(Request $request)
     {
+        \DB::transaction(function () use ($request){
         // Neues Rezept wird erstellt
         $recipe = new Recipe($this->validatedData());
         $recipe->user_id = auth()->id();
         $recipe->save();
-
         $this->storeImage($recipe);
 
         //Zutatenliste aus Nutzereingabe erstellen
         $this->saveIngredientlist($request, $recipe);
-
+        });
+        
         // Nutzer wird auf die Detailansicht des erstellten Rezepts weiter geleitet
         return redirect('/recipes/'.$recipe->id);
     }
@@ -115,7 +115,6 @@ class RecipeController extends Controller
         $ingredients = $this->validatedIngredients()['ingredients'];
         // dd($ingredients);
         foreach ($ingredients as $ingredient) {
-
 
             //Daten aus Request zuweisen
             $ingredientName = $ingredient['name'];
