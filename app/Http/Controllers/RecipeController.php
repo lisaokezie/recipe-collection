@@ -9,6 +9,7 @@ use App\Category;
 use App\Ingredient;
 use App\Unit;
 
+
 use App\Filters\RecipeFilters;
 
 class RecipeController extends Controller
@@ -27,7 +28,7 @@ class RecipeController extends Controller
 
     public function store(Request $request)
     {
-        \DB::transaction(function () use ($request){
+        return \DB::transaction(function () use ($request){
         // Neues Rezept wird erstellt
         $recipe = new Recipe($this->validatedData());
         $recipe->user_id = auth()->id();
@@ -36,10 +37,15 @@ class RecipeController extends Controller
 
         //Zutatenliste aus Nutzereingabe erstellen
         $this->saveIngredientlist($request, $recipe);
-        });
-        
+
+        if(!$recipe){
+            return redirect('/recipes/create');
+        }
+        else{
         // Nutzer wird auf die Detailansicht des erstellten Rezepts weiter geleitet
         return redirect('/recipes/'.$recipe->id);
+        }
+        });        
     }
 
     public function show(Recipe $recipe)
@@ -59,6 +65,7 @@ class RecipeController extends Controller
 
     public function update(Recipe $recipe, Request $request)
     {
+        return \DB::transaction(function () use ($recipe, $request){
         $recipe->update($this->validatedData());
 
         $this->storeImage($recipe);
@@ -68,13 +75,14 @@ class RecipeController extends Controller
         $this->saveIngredientlist($request, $recipe);
 
         return redirect('/recipes/'.$recipe->id);
+        });
     }
 
     public function destroy(Recipe $recipe)
     {
+        $recipe->ingredients()->detach();
         $recipe->delete();
         return redirect('/recipes');
-
     }
 
     public function search(Request $request)
@@ -111,9 +119,7 @@ class RecipeController extends Controller
 
     private function saveIngredientlist(Request $request, Recipe $recipe){
 
-        // dd($this->validatedIngredients());
         $ingredients = $this->validatedIngredients()['ingredients'];
-        // dd($ingredients);
         foreach ($ingredients as $ingredient) {
 
             //Daten aus Request zuweisen

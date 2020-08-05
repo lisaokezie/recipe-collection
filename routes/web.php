@@ -20,11 +20,11 @@ Route::any('/search','RecipeController@search');
 
 //Category
 Route::get('/categories', 'CategoryController@index');
+Route::get('/categories/create', 'CategoryController@create')->middleware('auth');
+Route::post('/categories', 'CategoryController@store');
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Comments
-
 Route::post('recipes/{recipe}/comments', 'CommentController@store');
