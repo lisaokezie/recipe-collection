@@ -5,12 +5,10 @@
 @section('headline', 'Kategorien')
 
 @section('content')
-
     <div class="row justify-content-center">
         <div class="col-8">
          <ul class="category-list">
         @forelse($categories as $category)
-
             <li>
                 <a href="{{ route('recipes.index', ['category' => $category->id])}}">{{$category->name}}</a>
             </li>

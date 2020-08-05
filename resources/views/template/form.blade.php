@@ -37,8 +37,8 @@
                         <label for="servings">Portionen</label>
                         <input name="servings" type="number" class="form-control" value="{{old('servings') ?? $recipe->servings}}">
                         @error('servings')
-                        <div class="text-danger">{{$message}}</div>
-                    @enderror                    
+                            <div class="text-danger">{{$message}}</div>
+                        @enderror                    
                     </div>
 
                     <!-- time -->
@@ -49,10 +49,10 @@
                             <div class="input-group-append">
                                 <span class="input-group-text">min</span>
                             </div>
-                            @error('time')
+                        </div>    
+                        @error('time')
                             <div class="text-danger">{{$message}}</div>
-                            @enderror 
-                        </div>                                         
+                        @enderror                                      
                     </div>
 
                     <!-- rating -->
@@ -62,18 +62,19 @@
                             <input name="rating" type="number" class="form-control" value="{{old('rating') ?? $recipe->rating}}">
                             <div class="input-group-append">
                                 <span class="input-group-text">
-                                    <ion-icon name="star-outline"></ion-icon>
+                                    <i class="material-icons md-18">star_outline</i>
                                 </span>
                             </div>
+                        </div>
+
                         @error('rating')
                         <div class="text-danger">{{$message}}</div>
                         @enderror 
                         </div>                   
-                        </div>
                     </div>
 
             @if(Request::path() === 'recipes/create')
-                 <!-- ingredients erstellen -->
+                 <!-- ingredientlist erstellen -->
 
                  <fieldset>
                  <legend>Zutaten</fieldset>
@@ -92,6 +93,8 @@
                     <td><button type="button" name="add" id="add" class="btn btn-success">Mehr Hinzufügen</button></td>  
                 </tr>  
                 </table> 
+                <small class="form-text text-muted mb-4">Jede Zutat benötigt eine Mengenangabe und eine Einheit.</small>
+
                 </fieldset>
 
                 <!-- Ingredientlist bearbeiten -->
@@ -135,6 +138,8 @@
 
 
                 </table> 
+
+                <small class="form-text text-muted mb-4">Jede Zutat benötigt eine Mengenangabe und eine Einheit.</small>
 
                 </fieldset>
 
