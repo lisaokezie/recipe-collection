@@ -13,29 +13,29 @@
             </div>
         @endif
 
-        <div class="d-flex justify-content-center justify-content-md-start flex-wrap my-3">
-            <span class="chip mx-1 mx-md-0 mr-md-2">
+        <div class="d-flex justify-content-center justify-content-md-start flex-wrap my-md-3">
+            <span class="chip mx-1 mx-md-0 mr-md-2 my-1">
             <i class="material-icons md-18">local_dining</i>
                 {{$recipe->servings}} Portion(en)
             </span>
 
-            <span class="chip mx-1 mx-md-0 mr-md-2">
+            <span class="chip mx-1 mx-md-0 mr-md-2 my-1">
             <i class="material-icons md-18">schedule</i>{{$recipe->time}} min
             </span>
 
-            <span class="chip mx-1 mx-md-0 mr-md-2">
+            <span class="chip mx-1 mx-md-0 mr-md-2 my-1">
             <i class="material-icons md-18">inbox</i>
                 {{$recipe->category->name}}
             </span>
 
-            <span class="chip mx-1 mx-md-0 mr-md-2">
+            <span class="chip mx-1 mx-md-0 mr-md-2 my-1">
                 <i class="material-icons md-18">star_outline</i>
                 {{$recipe->rating}}
             </span>
 
         </div>
 
-        <p><strong>Verfasser: </strong>{{$recipe->user->name}}</p>
+        <p class="mt-2"><strong>Verfasser: </strong>{{$recipe->user->name}}</p>
 
         <h3 class="mt-4">Beschreibung</h3>
         <p class="mb-4">{{$recipe->description}}</p>
@@ -49,22 +49,21 @@
         <h3 class="mt-5">Zubereitung</h3>
         <p class="mb-4">{{$recipe->instructions}}</p>
 
-            <a href="{{action('RecipeController@downloadPDF', $recipe->id)}}" role="button" class="btn btn-outline-primary">PDF erstellen</a>
-
+    <div role="group" class="mt-5">
+        <a href="{{action('RecipeController@downloadPDF', $recipe->id)}}" role="button" class="btn btn-dark">PDF erstellen</a>
     @auth
     @if(Auth::user()->id == $recipe->user_id)
-    <div role="group" class="mt-4">
-        <a href="/recipes/{{$recipe->id}}/edit" role="button" class="btn btn-outline-primary mr-1">Bearbeiten</a>
+        <a href="/recipes/{{$recipe->id}}/edit" role="button" class="btn btn-dark ">Bearbeiten</a>
         <form action="/recipes/{{$recipe->id}}" method="post" style="display: inline;">
                 @method('DELETE')
                 @csrf
-            <button class="btn btn-outline-danger">Löschen</button>
+            <button class="btn btn-dark">Löschen</button>
         </form>
-    </div>
     @endif
     @endauth
+    </div>
 
-    <section class="mt-5">
+    <section class="mt-4">
     <hr>
 
     <h3>Kommentare</h3>
@@ -79,7 +78,7 @@
                     <div class="text-danger">{{$message}}</div>
                 @enderror
         </div>
-        <button class="btn btn-secondary">Senden</button>
+        <button class="btn btn-outline-dark">Senden</button>
     </form>
     @endauth
     @guest
@@ -93,7 +92,7 @@
     <div class="user-info"><strong>{{$comment->user->name}}</strong></div>
         <p>{{$comment->text}}</p>
         @empty
-            <p>Keine Kommentare vorhanden</p>
+            <p class="py-3">Keine Kommentare vorhanden</p>
         @endforelse
 
     </section>

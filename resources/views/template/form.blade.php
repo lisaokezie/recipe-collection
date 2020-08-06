@@ -77,7 +77,7 @@
                  <!-- ingredientlist erstellen -->
 
                  <fieldset>
-                 <legend>Zutaten</fieldset>
+                 <legend>Zutaten</legend>
 
                  <table class="table table-bordered" id="dynamicTable">  
                 <tr>
@@ -100,7 +100,7 @@
                 <!-- Ingredientlist bearbeiten -->
                 @else
                 <fieldset>
-                 <legend>Zutaten</fieldset>
+                 <legend>Zutaten</legend>
 
                  <table class="table table-bordered" id="dynamicTable">  
                 <tr>
@@ -157,6 +157,9 @@
                 <div class="form-group d-flex flex-column">
                     <label for="image">Rezeptbild</label>
                     <input type="file" name="image" class="py-2">
+                    <small class="form-text text-muted mb-4">Optional
+                    </small>
+
                     @error('image')
                         <div class="text-danger">{{$message}}</div>
                     @enderror

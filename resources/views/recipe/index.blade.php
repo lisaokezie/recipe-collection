@@ -15,7 +15,7 @@
         @include('template.card')
 
         @empty
-            <p class="text-center">Keine Rezepte vorhanden</p>
+            <p class="text-left">Keine Rezepte vorhanden</p>
         @endforelse
     </div>
     {{ $recipes->links() }}

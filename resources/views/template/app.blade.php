@@ -99,7 +99,7 @@
 
                             </li>
                         @endguest
-</ul>
+            </ul>
         </div>
 
         </div>
@@ -107,7 +107,7 @@
     <main>
     <div class="container mb-5">
 
-    <div class="mx-auto mb-2 px-3 py-3 pt-md-5 pb-md-4 text-center">
+    <div class="mx-auto mb-2 px-3 pt-4 pb-3 pt-sm-5 pb-sm-4 text-center">
             <h2 class="display-4">@yield('headline')</h2>
         </div>
 
