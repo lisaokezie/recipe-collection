@@ -9,7 +9,7 @@ use App\Category;
 use App\Ingredient;
 use App\Unit;
 
-
+use PDF;
 use App\Filters\RecipeFilters;
 
 class RecipeController extends Controller
@@ -148,5 +148,14 @@ class RecipeController extends Controller
                 'image' => request()->image->store('uploads','public')
             ]);
         }
+    }
+
+    public function downloadPDF($id) {
+        $recipe = Recipe::find($id);
+        $units = Unit::all();
+
+        $pdf = PDF::loadView('recipe.pdf', compact('recipe','units'));
+        
+        return $pdf->download($recipe->title.'-Rezept.pdf');
     }
 }

@@ -50,10 +50,11 @@
         <h3 class="mt-5">Zubereitung</h3>
         <p class="mb-4">{{$recipe->instructions}}</p>
 
+            <a href="{{action('RecipeController@downloadPDF', $recipe->id)}}" role="button" class="btn btn-outline-primary">PDF erstellen</a>
+
     @auth
     @if(Auth::user()->id == $recipe->user_id)
     <div role="group" class="mt-4">
-    <!-- <button type="button" class="btn btn-outline-primary">PDF erstellen</button> -->
         <a href="/recipes/{{$recipe->id}}/edit" role="button" class="btn btn-outline-primary mr-1">Bearbeiten</a>
         <form action="/recipes/{{$recipe->id}}" method="post" style="display: inline;">
                 @method('DELETE')

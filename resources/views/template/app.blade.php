@@ -16,7 +16,7 @@
     <!--    Icons-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!--    Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Montserrat:wght@600;700&display=swap" rel="stylesheet"> -->
 
     <link rel="stylesheet" href="{{url('/css/app.css')}}" text="text/css">
 
