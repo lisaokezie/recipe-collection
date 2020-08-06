@@ -3,12 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Filters\Filterable;
 
 class Recipe extends Model
 {
-    use Filterable;
-
     protected $guarded = [];
 
     public function category()
@@ -30,5 +27,17 @@ class Recipe extends Model
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+
+    public function scopeCategories($query, $category)
+    {
+        if($category != ''){
+            return $query->where('recipes.category_id', 'LIKE', "%$category%");
+        }
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('title','LIKE','%'.$search.'%')->orWhere('description','LIKE','%'.$search.'%');
     }
 }

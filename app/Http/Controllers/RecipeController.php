@@ -10,13 +10,13 @@ use App\Ingredient;
 use App\Unit;
 
 use PDF;
-use App\Filters\RecipeFilters;
 
 class RecipeController extends Controller
 {
-    public function index(Request $request, RecipeFilters $filters)
+    public function index(Request $request)
     {
-        $recipes =  Recipe::filter($filters)->orderBy('created_at','DESC')->paginate(12);
+        $category = $request->query('category');
+        $recipes = Recipe::categories($category, '')->orderBy('created_at','DESC')->paginate(12);
         return view('recipe.index', compact('recipes'));
     }
 
@@ -88,9 +88,9 @@ class RecipeController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $recipe = Recipe::where('title','LIKE','%'.$search.'%')->orWhere('description','LIKE','%'.$search.'%')->paginate(12);
-        if(count($recipe) > 0)
-            return view('recipe.search')->withDetails($recipe)->withQuery ( $search );
+        $recipes = Recipe::Search($search)->paginate(12);
+        if(count($recipes) > 0)
+            return view('recipe.search')->withDetails($recipes)->withQuery($search);
         else return view ('recipe.search')->withMessage('Es wurden keine rezepte gefunden');
     }
 

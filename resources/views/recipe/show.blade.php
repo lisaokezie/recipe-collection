@@ -8,13 +8,12 @@
 
 <div class="recipe pb-5 mx-auto maxwidth">
         @if($recipe->image)
-        <div class="img-container mb-4">
-            <img src="{{asset('storage/' . $recipe->image)}}" alt="" class="img-fluid">
-        </div>
+            <div class="img-container mb-4">
+                <img src="{{asset('storage/' . $recipe->image)}}" alt="" class="img-fluid">
+            </div>
         @endif
 
         <div class="d-flex justify-content-center justify-content-md-start flex-wrap my-3">
-
             <span class="chip mx-1 mx-md-0 mr-md-2">
             <i class="material-icons md-18">local_dining</i>
                 {{$recipe->servings}} Portion(en)
@@ -92,12 +91,11 @@
     @forelse($recipe->comments->sortByDesc('created_at') as $comment)
     <hr>
     <div class="user-info"><strong>{{$comment->user->name}}</strong></div>
-    <p>{{$comment->text}}</p>
-
-    @empty
-        <p>Keine Kommentare vorhanden</p>
-    @endforelse
+        <p>{{$comment->text}}</p>
+        @empty
+            <p>Keine Kommentare vorhanden</p>
+        @endforelse
 
     </section>
-</div>
+    </div>
     @endsection
