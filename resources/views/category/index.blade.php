@@ -10,7 +10,7 @@
          <ul class="category-list">
         @forelse($categories as $category)
             <li>
-                <a href="{{ route('recipes.index', ['category' => $category->id])}}">{{$category->name}}</a>
+                <a href="{{ route('recipes.index', ['category' => $category->id, 'name' => $category->name])}}">{{$category->name}}</a>
             </li>
         @empty
             <div class="mx-auto text-center">Keine Kategorien vorhanden</div>

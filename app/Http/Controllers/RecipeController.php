@@ -15,9 +15,8 @@ class RecipeController extends Controller
 {
     public function index(Request $request)
     {
-        $category = $request->query('category');
-        $recipes = Recipe::categories($category, '')->orderBy('created_at','DESC')->paginate(12);
-        return view('recipe.index', compact('recipes'));
+        $recipes = Recipe::categories($request->category)->orderBy('created_at','DESC')->paginate(12);
+        return view('recipe.index', compact('recipes'))->withQuery($request->name);
     }
 
     public function create()

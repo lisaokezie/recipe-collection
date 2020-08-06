@@ -2,7 +2,11 @@
 
 @section('title', 'Startseite')
 
-@section('headline','Rezeptsammlung')
+@if(!empty($query))
+    @section('headline', e($query))
+@else
+    @section('headline','Rezeptsammlung')
+@endif
 
 @section('content')
     <div class="card-columns">
