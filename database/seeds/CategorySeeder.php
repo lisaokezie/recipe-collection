@@ -17,11 +17,12 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             ['name' => 'Kochen'],
+            ['name' => 'Salate'],
+            ['name' => 'Pasta und Nudeln'],
             ['name' => 'Kuchen'],
-            ['name' => 'Torten'],
+            ['name' => 'Kekse & Plätzchen'],
             ['name' => 'Gebäck'],
-            ['name' => 'Brot und Brötchen'],
-            ['name' => 'Aufläufe']
+            ['name' => 'Brot und Brötchen']
         ];
 
         foreach($categories as $category){
