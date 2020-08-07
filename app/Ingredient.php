@@ -8,6 +8,7 @@ class Ingredient extends Model
 {
     protected $guarded = [];
 
+    /* Beziehungen des Ingredient Models */
     public function recipes()
     {
         return $this->belongsToMany('App\Recipe', 'ingredientlists');

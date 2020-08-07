@@ -37,6 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /* Beziehungen des User Models */
     public function recipes()
     {
         return $this->hasMany('App\Recipe');

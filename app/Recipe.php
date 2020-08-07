@@ -8,6 +8,7 @@ class Recipe extends Model
 {
     protected $guarded = [];
 
+    /* Beziehungen des Recipe Models */
     public function category()
     {
         return $this->hasOne('App\Category','id','category_id');
@@ -29,6 +30,10 @@ class Recipe extends Model
         return $this->hasMany('App\Comment');
     }
 
+    /* 
+    Lokale Scopes für das Filtern nach Kategorien und das Suchen von Rezepten 
+    werden im RecipeController verwendet   
+    */
     public function scopeCategories($query, $category)
     {
         if($category != ''){

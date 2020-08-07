@@ -8,6 +8,7 @@ class Unit extends Model
 {
     protected $guarded = [];
 
+    /* Beziehungen des Unit Models */
     public function recipe()
     {
         return $this->belongsTo('App\Recipe', 'unit_id');

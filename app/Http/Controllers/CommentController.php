@@ -8,6 +8,7 @@ use App\Comment;
 
 class CommentController extends Controller
 {
+    /* Speichert einen Kommentar zu einem Rezept und verwendet den Namen des eingeloggten Users */
     public function store(Request $request, Recipe $recipe)
     {
         $comment = new Comment($this->validatedData());
@@ -18,6 +19,7 @@ class CommentController extends Controller
         return back();
     }
 
+    /* Validiert die Eingabe des Nutzers */
     private function validatedData(){
         return request()->validate([
             'text' => 'required'

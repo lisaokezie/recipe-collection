@@ -9,6 +9,7 @@ class Ingredientlist extends Model
 {
     protected $guarded = [];
 
+    /* Beziehungen des Ingredientlist Models */
     public function ingredient()
     {
         return $this->belongsTo('App\ingredient');
