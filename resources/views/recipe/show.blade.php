@@ -35,7 +35,7 @@
 
         </div>
 
-        <p class="mt-2"><strong>Verfasser: </strong>{{$recipe->user->name}}</p>
+        <p class="mt-2">Rezept von <strong>{{$recipe->user->name}}</strong></p>
 
         <h3 class="mt-4">Beschreibung</h3>
         <p class="mb-4">{{$recipe->description}}</p>
@@ -43,7 +43,14 @@
         <h3 class="mt-5">Zutaten</h3>
 
         @foreach($recipe->ingredients as $ingredient)
-            <p>{{$ingredient->pivot->amount}} {{$units->find($ingredient->pivot->unit_id)->name}} {{$ingredient->name}}</p>
+            <div class="row py-1">
+
+                <div class="col-3 col-md-2 text-style" style="font-weight: 700">
+                    {{$ingredient->pivot->amount}} {{$units->find($ingredient->pivot->unit_id)->name}}
+                </div>
+                <div class="col-auto text-style">{{$ingredient->name}}</div>
+            <!-- <p>{{$ingredient->pivot->amount}} {{$units->find($ingredient->pivot->unit_id)->name}} {{$ingredient->name}}</p> -->
+            </div>
         @endforeach
 
         <h3 class="mt-5">Zubereitung</h3>

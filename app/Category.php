@@ -9,8 +9,8 @@ class Category extends Model
     protected $guarded = [];
 
     /* Beziehung des Category Models */
-    public function recipe()
+    public function recipes()
     {
-        return $this->belongsTo('App\Recipe');
+        return $this->hasMany('App\Recipe');
     }
 }

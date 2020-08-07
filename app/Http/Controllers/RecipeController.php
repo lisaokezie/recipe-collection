@@ -102,7 +102,7 @@ class RecipeController extends Controller
     private function validatedData(){
         return request()->validate([
             'title' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:200',
             'category_id' => 'required',
             'instructions' => 'required',
             'servings' => 'required|integer|min:1|max:100',
