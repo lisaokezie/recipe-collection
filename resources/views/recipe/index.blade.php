@@ -17,7 +17,7 @@
         @empty
         <div class="card">
             <div class="card-body">
-                Keine Rezepte vorhandenn
+                Keine Rezepte vorhanden
             </div>
         </div>
         
