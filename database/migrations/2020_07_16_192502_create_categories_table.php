@@ -19,9 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
         });
 
-        Artisan::call('db:seed', [
-            '--class' => CategorySeeder::class
-        ]);
+        DB::unprepared(File::get(base_path() . '/database/seeds/categories.sql'));
     }
 
     /**

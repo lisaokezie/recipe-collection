@@ -4,6 +4,16 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Http\Request;
 
+/*
+Die 'init' Route verlinkt den Storage der App neu, 
+erstellt mithilfe des migrate Befehls die Datenbanktabellen und füllt diese
+*/
+Route::get('/init', function () {
+    Artisan::call('storage:link');
+    Artisan::call('migrate:fresh');
+    return redirect('/recipes');
+});
+
 /* Aktionen für 'Recipe' */
 Route::redirect('/', '/recipes');
 Route::get('/recipes', 'RecipeController@index')->name('recipes.index');

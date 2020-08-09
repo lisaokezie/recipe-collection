@@ -18,6 +18,8 @@ class CreateIngredientsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        DB::unprepared(File::get(base_path() . '/database/seeds/ingredients.sql'));
     }
 
     /**

@@ -21,6 +21,8 @@ class CreateIngredientlistsTable extends Migration
             $table->foreignId('unit_id')->onDelete('cascade');
             $table->timestamps();
         });
+
+        DB::unprepared(File::get(base_path() . '/database/seeds/ingredientlists.sql'));
     }
 
     /**

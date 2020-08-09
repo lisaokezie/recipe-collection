@@ -20,6 +20,8 @@ class CreateCommentsTable extends Migration
             $table->text('text');           
             $table->timestamps();
         });
+
+        DB::unprepared(File::get(base_path() . '/database/seeds/comments.sql'));
     }
 
     /**

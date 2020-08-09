@@ -18,7 +18,11 @@ class CreateUnitsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        DB::unprepared(File::get(base_path() . '/database/seeds/units.sql'));
+
     }
+
 
     /**
      * Reverse the migrations.

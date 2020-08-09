@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::unprepared(File::get(base_path() . '/database/seeds/users.sql'));
     }
 
     /**

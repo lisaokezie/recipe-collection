@@ -27,6 +27,9 @@ class CreateRecipesTable extends Migration
             $table->timestamps();
 
         });
+
+        DB::unprepared(File::get(base_path() . '/database/seeds/recipes.sql'));
+
     }
 
     /**
